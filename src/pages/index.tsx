@@ -1,7 +1,8 @@
 import { NextPage } from 'next'
+import { Button, useColorMode, Box } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
-  return <>Hello world</>
+  return <></>
 }
 
 export default Home
