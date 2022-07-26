@@ -1,8 +1,16 @@
 import { NextPage } from 'next'
-import { Button, useColorMode, Box } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
+
+import HomeTemplate from '../layouts/HomeTemplate'
 
 const Home: NextPage = () => {
-  return <></>
+  return (
+    <>
+      <Container maxW="container.xl">
+        <HomeTemplate />
+      </Container>
+    </>
+  )
 }
 
 export default Home

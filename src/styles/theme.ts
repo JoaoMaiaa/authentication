@@ -1,14 +1,24 @@
-import { extendTheme } from '@chakra-ui/react'
+import { extendTheme, ThemeConfig } from '@chakra-ui/react'
 import { mode, StyleFunctionProps } from '@chakra-ui/theme-tools'
 
-const theme = extendTheme({
-  styles: {
-    global: (props: StyleFunctionProps) => ({
-      body: {
-        bg: mode('blue', 'red.800')(props)
-      }
-    })
-  }
-})
+const styles = {
+  global: (props: StyleFunctionProps) => ({
+    body: {
+      bg: mode('#FAF5FF', '#151E50')(props)
+    }
+  })
+}
+
+const fonts = {
+  heading: `'Oswald', sans-serif`,
+  body: `'Oswald', sans-serif`
+}
+
+const config: ThemeConfig = {
+  initialColorMode: 'dark',
+  useSystemColorMode: true
+}
+
+const theme = extendTheme({ fonts, styles, config })
 
 export default theme
