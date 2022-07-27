@@ -1,7 +1,11 @@
+import { Container } from '@chakra-ui/react'
+
 const AuthTemplate = () => {
   return (
     <>
-      <h1>Parabéns</h1>
+      <Container maxW="container.xl" p="4">
+        <h1>Parabéns</h1>
+      </Container>
     </>
   )
 }

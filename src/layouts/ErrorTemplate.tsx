@@ -1,7 +1,11 @@
+import { Container } from '@chakra-ui/react'
+
 const ErrorTemplate = () => {
   return (
     <>
-      <h1>Ooooops 401</h1>
+      <Container maxW="container.xl" p="4">
+        <h1>Ooooops 401</h1>
+      </Container>
     </>
   )
 }
