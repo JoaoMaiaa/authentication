@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, useColorMode } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 
 export interface ButtonProps {
@@ -9,6 +9,7 @@ export interface ButtonProps {
 
 const ButtonLink = ({ name, link, type }: ButtonProps) => {
   const router = useRouter()
+  const { colorMode } = useColorMode()
 
   function pushRouter() {
     router.push(link)
@@ -16,7 +17,16 @@ const ButtonLink = ({ name, link, type }: ButtonProps) => {
 
   return (
     <>
-      <Button type={type} onClick={pushRouter}>
+      <Button
+        bg={colorMode === 'light' ? 'blue.200' : 'whiteAlpha.200'}
+        _hover={
+          colorMode === 'light'
+            ? { backgroundColor: 'blue.300' }
+            : { backgroundColor: 'whiteAlpha.300' }
+        }
+        type={type}
+        onClick={pushRouter}
+      >
         {name}
       </Button>
     </>

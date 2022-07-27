@@ -10,8 +10,9 @@ const Header = () => {
   return (
     <>
       <header>
-        <Box display="flex" onClick={() => router.push('/')} cursor="pointer">
+        <Box display="flex" cursor="pointer">
           <Heading
+            onClick={() => router.push('/')}
             fontSize="2rem"
             display="flex"
             color={colorMode === 'light' ? 'blue.200' : '#4358CB'}
@@ -19,7 +20,7 @@ const Header = () => {
           >
             Pro
             <Box
-              color={colorMode === 'dark' ? 'white' : '#4358CB'}
+              color={colorMode === 'dark' ? '#FAF5FF' : '#4358CB'}
               fontSize="1.5rem"
               mt="0.5rem"
               mb="1rem"

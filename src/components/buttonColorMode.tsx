@@ -12,7 +12,7 @@ const ButtonColorMode = () => {
         {colorMode === 'light' ? (
           <Moon color="#4358CB" />
         ) : (
-          <Sun color="white" />
+          <Sun color="#FAF5FF" />
         )}
       </Button>
     </>
