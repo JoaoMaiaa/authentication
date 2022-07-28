@@ -11,6 +11,7 @@ const InputComponent = ({ type, name, value, placeholder }: InputProps) => {
   return (
     <>
       <Input
+        isRequired
         bg="#151E50"
         borderRadius="sm"
         type={type}

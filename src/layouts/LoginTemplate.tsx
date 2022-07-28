@@ -1,5 +1,6 @@
 import { Container, Button, Img, Box, Heading } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { FormEvent, useState } from 'react'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -7,10 +8,16 @@ import Input from '../components/input'
 
 const LoginTemplate = () => {
   const router = useRouter()
+  const [loading, setLoading] = useState(false)
 
-  function handleSubmit(e) {}
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault()
+    setLoading(true)
 
-  function handleClick() {}
+    setTimeout(() => {
+      setLoading(false)
+    }, 3500)
+  }
 
   return (
     <>
@@ -23,7 +30,7 @@ const LoginTemplate = () => {
         />
         <Box w="50%">
           <Container p="4" maxW="container.lg">
-            <Header />
+            <Header buttonName="Início" link="/" />
             <Box
               borderRadius="sm"
               mt="5rem"
@@ -41,7 +48,12 @@ const LoginTemplate = () => {
                 <Box m="1.5rem"></Box>
                 <Input type="email" name="" value="" placeholder="Seu email" />
                 <Box m="1.5rem"></Box>
-                <Button w="100%" type="submit" onClick={() => handleClick}>
+                <Button
+                  loadingText="Autenticando..."
+                  isLoading={loading}
+                  w="100%"
+                  type="submit"
+                >
                   Autenticar
                 </Button>
               </form>

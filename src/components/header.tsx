@@ -4,7 +4,12 @@ import { useRouter } from 'next/router'
 import ButtonLink from './button'
 import ButtonColorMode from './buttonColorMode'
 
-const Header = () => {
+export interface HeaderProps {
+  buttonName: string
+  link: string
+}
+
+const Header = ({ buttonName, link }: HeaderProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
   return (
@@ -30,7 +35,7 @@ const Header = () => {
             </Box>
           </Heading>
           <Box ml="auto">
-            <ButtonLink name="Sobre" type="button" link="/auth/bem-vindo" />
+            <ButtonLink name={buttonName} type="button" link={link} />
             <Box display="inline-flex" m="1.5"></Box>
             <ButtonColorMode />
           </Box>
