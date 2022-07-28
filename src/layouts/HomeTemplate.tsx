@@ -16,7 +16,7 @@ const HomeTemplate = () => {
   return (
     <>
       <Container maxW="container.lg" p="4">
-        <Header />
+        <Header buttonName="Sobre" link="/auth/bem-vindo" />
         <Box display="flex" mt="3rem">
           <Box
             p="5"
