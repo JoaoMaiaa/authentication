@@ -18,10 +18,10 @@ const ButtonLink = ({ name, link, type }: ButtonProps) => {
   return (
     <>
       <Button
-        bg={colorMode === 'light' ? 'blue.200' : 'whiteAlpha.200'}
+        bg={colorMode === 'light' ? 'blue.300' : 'whiteAlpha.200'}
         _hover={
           colorMode === 'light'
-            ? { backgroundColor: 'blue.300' }
+            ? { backgroundColor: 'blue.200' }
             : { backgroundColor: 'whiteAlpha.300' }
         }
         type={type}
