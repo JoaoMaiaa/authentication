@@ -45,9 +45,8 @@ const HomeTemplate = () => {
               </Box>
             </Heading>
             <Text maxW="20rem" my="2rem">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo id
-              modi earum in temporibus ab autem deleniti illum ullam
-              repudiandae!
+              Este é um pequeno projeto que visa trabalhar com autenticação de
+              forma global com o contexto do React e o serverles do next.
             </Text>
             <ButtonLink type="button" link="/auth/login" name="Autentique-se" />
           </Box>
