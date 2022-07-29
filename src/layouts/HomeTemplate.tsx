@@ -13,11 +13,12 @@ import Footer from '../components/footer'
 
 const HomeTemplate = () => {
   const { colorMode } = useColorMode()
+
   return (
     <>
       <Container maxW="container.lg" p="4">
         <Header buttonName="Sobre" link="/auth/bem-vindo" />
-        <Box display="flex" mt="3rem">
+        <Box display="flex" mt="3rem" position="relative">
           <Box
             p="5"
             mt="4rem"
