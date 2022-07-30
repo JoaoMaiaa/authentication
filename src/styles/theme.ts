@@ -10,6 +10,12 @@ const styles = {
   })
 }
 
+const colors = {
+  gray: {
+    700: '#151E50;'
+  }
+}
+
 const fonts = {
   heading: `'Oswald', sans-serif`,
   body: `'Oswald', sans-serif`
@@ -20,6 +26,6 @@ const config: ThemeConfig = {
   useSystemColorMode: true
 }
 
-const theme = extendTheme({ fonts, styles, config })
+const theme = extendTheme({ fonts, styles, config, colors })
 
 export default theme

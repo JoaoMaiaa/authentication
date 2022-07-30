@@ -40,9 +40,6 @@ const LoginTemplate = () => {
     setActiveLogin(!true)
   }
 
-  console.log('Registro ' + activeRegister)
-  console.log('Login ' + activeLogin)
-
   const alertSuccess = () => {
     toast({
       title: 'Successo!',

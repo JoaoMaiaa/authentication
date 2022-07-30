@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import ButtonLink from './button'
 import ButtonColorMode from './buttonColorMode'
+import DrawerComponent from './drawer'
 
 export interface HeaderProps {
   buttonName: string
@@ -38,6 +39,8 @@ const Header = ({ buttonName, link }: HeaderProps) => {
             <ButtonLink name={buttonName} type="button" link={link} />
             <Box display="inline-flex" m="1.5"></Box>
             <ButtonColorMode />
+            <Box display="inline-flex" m="1.5"></Box>
+            <DrawerComponent />
           </Box>
         </Box>
       </header>
