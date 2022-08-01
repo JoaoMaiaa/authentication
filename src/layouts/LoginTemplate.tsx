@@ -85,17 +85,18 @@ const LoginTemplate = () => {
           w="50%"
           h="100vh"
           src="/jeremy-bishop-login.jpg"
+          display={{ base: 'none', md: 'flex' }}
         />
-        <Box w="50%">
+        <Box w={{ base: '100%', md: '50%' }}>
           <Container p="4" maxW="container.lg">
             <Header buttonName="Início" link="/" />
             <Box
+              mx={{ base: '0', lg: '5rem' }}
               borderRadius="sm"
               mt="1.4rem"
-              mx="auto"
               bg={colorMode === 'light' ? 'blue.200' : '#1C2766'}
-              w="30rem"
-              px="4rem"
+              w=""
+              px="2rem"
               py="2rem"
             >
               <form onSubmit={(e) => handleSubmit(e)}>

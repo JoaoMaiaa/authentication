@@ -18,8 +18,12 @@ const AuthTemplate = () => {
     <>
       <Container maxW="container.lg" p="4">
         <Header buttonName="Sair" link="/" />
-        <Box display="flex" mt="3rem">
-          <Box maxW="40rem" mr="auto">
+        <Box display="flex" mt={{ base: '0', md: '3rem' }}>
+          <Box
+            mr="auto"
+            mt={{ base: '20rem', md: '0' }}
+            maxW={{ base: '100%', md: '40rem' }}
+          >
             <Img objectFit="fill" src="/jeremy-bishop-auth.jpg" />
           </Box>
           <Box
@@ -27,9 +31,9 @@ const AuthTemplate = () => {
             mt="4rem"
             bg={colorMode === 'light' ? '#FAF5FF' : '#151E50'}
             position="absolute"
-            ml="30rem"
-            w="450px"
-            h="417px"
+            ml={{ base: '0', md: '30rem' }}
+            w={{ base: '350px', md: '450px' }}
+            h={{ base: '380px', md: '420px' }}
           >
             <Heading display="flex" alignItems="center">
               Parabéns! Você se autenticou!
@@ -45,12 +49,16 @@ const AuthTemplate = () => {
         </Box>
         <main>
           <Box my="10rem">
-            <Box display="flex" gap="4">
-              <Box>
+            <Box display="flex" flexWrap="wrap" gap="4">
+              <Box mx="auto">
                 <Heading as="h2" fontSize="4rem">
                   JWT
                 </Heading>
-                <Text my="2rem" fontWeight="normal" w="30rem">
+                <Text
+                  my="2rem"
+                  fontWeight="normal"
+                  w={{ base: '20rem', md: '30rem' }}
+                >
                   Neste projeto foi utlizado a biblioteca JWT que gera o token
                   de autenticação e assim autoriza o acesso do usuário. JSON Web
                   Token (JWT) é um padrão aberto (RFC 7519) que define uma
@@ -60,12 +68,21 @@ const AuthTemplate = () => {
               </Box>
               <Img objectFit="cover" m="auto" w="200px" src="/pic_logo.svg" />
             </Box>
-            <Box my="8rem" display="flex" flexDirection="row-reverse">
-              <Box>
+            <Box
+              my="8rem"
+              display="flex"
+              flexWrap="wrap"
+              flexDirection="row-reverse"
+            >
+              <Box mx="auto">
                 <Heading as="h2" fontSize="4rem">
                   Context Api
                 </Heading>
-                <Text my="2rem" fontWeight="normal" w="30rem">
+                <Text
+                  my="2rem"
+                  fontWeight="normal"
+                  w={{ base: '20rem', md: '30rem' }}
+                >
                   React faz com que a criação de UIs interativas seja uma tarefa
                   fácil utilizando componentes entre outros benefícios. O
                   contexto (context) fornece a forma de compartilhar dados entre
@@ -76,12 +93,16 @@ const AuthTemplate = () => {
               </Box>
               <Img objectFit="cover" mr="auto" w="400px" src="/react-js.png" />
             </Box>
-            <Box display="flex">
-              <Box>
+            <Box display="flex" flexWrap="wrap">
+              <Box mx="auto">
                 <Heading as="h2" fontSize="4rem">
                   Next Js
                 </Heading>
-                <Text my="2rem" fontWeight="normal" w="30rem">
+                <Text
+                  my="2rem"
+                  fontWeight="normal"
+                  w={{ base: '20rem', md: '30rem' }}
+                >
                   Um framework preparado para a produção. O Next.js oferece a
                   melhor experiência de desenvolvedor com todos os recursos
                   necessários para produção: híbrido-estático, server rendering,

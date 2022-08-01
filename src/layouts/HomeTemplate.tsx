@@ -18,17 +18,18 @@ const HomeTemplate = () => {
     <>
       <Container maxW="container.lg" p="4">
         <Header buttonName="Sobre" link="/auth/bem-vindo" />
-        <Box display="flex" mt="3rem" position="relative">
+        <Box display="flex" mt={{ base: '0', md: '3rem' }} position="relative">
           <Box
             p="5"
+            // mt={{ base: '0', md: '4rem' }}
             mt="4rem"
             bg={colorMode === 'light' ? '#FAF5FF' : '#151E50'}
             position="absolute"
-            ml="3rem"
-            w="450px"
-            h="390px"
+            ml={{ base: '0', md: '3rem' }}
+            minW={{ base: '100px', md: '450px' }}
+            h={{ base: '310px', md: '390px' }}
           >
-            <Heading display="flex" alignItems="center">
+            <Heading display="flex" flexWrap="wrap" alignItems="center">
               Bem vindo ao
               <Box
                 mx="1"
@@ -38,7 +39,7 @@ const HomeTemplate = () => {
               </Box>
               <Box
                 fontSize="1.5rem"
-                mt="2"
+                mt="1"
                 color={colorMode === 'light' ? '#4358CB' : '#FAF5FF'}
               >
                 {' '}
@@ -49,13 +50,20 @@ const HomeTemplate = () => {
               Este é um pequeno projeto que visa trabalhar com autenticação de
               forma global com o contexto do React e o serverles do next.
             </Text>
+
             <ButtonLink type="button" link="/auth/login" name="Autentique-se" />
           </Box>
-          <Box maxW="40rem" ml="auto">
+          <Box
+            mt={{ base: '20rem', md: '0' }}
+            maxW={{ base: '100%', md: '40rem' }}
+            ml="auto"
+          >
             <Img objectFit="fill" src="/jeremy-bishop-home.jpg" />
           </Box>
         </Box>
-        <Footer />
+        <Box mt={{ base: '15rem', md: '0rem' }}>
+          <Footer />
+        </Box>
       </Container>
     </>
   )
