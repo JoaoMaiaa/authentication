@@ -5,30 +5,36 @@ import {
   Box,
   Heading,
   useToast,
-  useColorMode,
-  ButtonGroup
+  useColorMode
 } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { FormEvent, useState, useContext } from 'react'
+import { FormEvent, useState, useContext, useEffect } from 'react'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Input from '../components/input'
 
+import { LoginContext } from '../contexts/LoginContext'
 import { AuthContext } from '../contexts/AuthContext'
 
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
   const [activeRegister, setActiveRegister] = useState(true)
   const [activeLogin, setActiveLogin] = useState(false)
+  const { data, setData } = useContext(AuthContext)
 
   const router = useRouter()
-
-  const { email, setEmail, name, setName } = useContext(AuthContext)
-
+  const { email, setEmail, name, setName } = useContext(LoginContext)
   const toast = useToast()
-
   const { colorMode } = useColorMode()
+
+  useEffect(() => {
+    if (data) {
+      router.push('/')
+    } else {
+      return
+    }
+  }, [router, data])
 
   const handleClickLogin = () => {
     setActiveLogin(!false)
@@ -66,13 +72,14 @@ const LoginTemplate = () => {
     if (email === '' || name === '') {
       aletToastError()
     } else {
-      alertSuccess()
       setLoading(true)
       setTimeout(() => {
         setLoading(false)
+        setData(localStorage.getItem('token') as string)
       }, 3500)
       setEmail('')
       setName('')
+      alertSuccess()
       router.push('/auth/bem-vindo')
     }
   }
@@ -101,7 +108,7 @@ const LoginTemplate = () => {
             >
               <form onSubmit={(e) => handleSubmit(e)}>
                 <Heading mb="2rem" as="h1" fontSize="2rem">
-                  Coloque seus dados
+                  {activeRegister ? 'Registrar' : 'Login'}
                 </Heading>
                 <Input
                   type="text"
@@ -131,7 +138,7 @@ const LoginTemplate = () => {
                   w="100%"
                   type="submit"
                 >
-                  Autenticar
+                  {activeRegister ? 'Registar' : 'Login'}
                 </Button>
                 <Box m="1.5rem"></Box>
                 <Box display="flex" gap="2">

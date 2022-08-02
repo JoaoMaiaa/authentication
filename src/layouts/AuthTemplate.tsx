@@ -6,6 +6,10 @@ import {
   Text,
   useColorMode
 } from '@chakra-ui/react'
+import { useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
+
+import { AuthContext } from '../contexts/AuthContext'
 
 import Header from '../components/header'
 import Footer from '../components/footer'
@@ -13,6 +17,16 @@ import ButtonLink from '../components/button'
 
 const AuthTemplate = () => {
   const { colorMode } = useColorMode()
+  const { data, setData } = useContext(AuthContext)
+  const router = useRouter()
+
+  useEffect(() => {
+    if (data) {
+      setData(localStorage.getItem('token') as string)
+    } else {
+      router.push('/auth/ooops')
+    }
+  }, [data, router, setData])
 
   return (
     <>

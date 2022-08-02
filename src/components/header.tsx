@@ -1,9 +1,12 @@
 import { Box, Heading, useColorMode } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import { useContext } from 'react'
 
 import ButtonLink from './button'
 import ButtonColorMode from './buttonColorMode'
 import DrawerComponent from './drawer'
+
+import { AuthContext } from '../contexts/AuthContext'
 
 export interface HeaderProps {
   buttonName: string
@@ -13,6 +16,8 @@ export interface HeaderProps {
 const Header = ({ buttonName, link }: HeaderProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
+  const { data } = useContext(AuthContext)
+
   return (
     <>
       <header>
@@ -40,7 +45,8 @@ const Header = ({ buttonName, link }: HeaderProps) => {
             <Box display="inline-flex" m="1.5"></Box>
             <ButtonColorMode />
             <Box display="inline-flex" m="1.5"></Box>
-            <DrawerComponent />
+
+            {data ? <DrawerComponent /> : ''}
           </Box>
         </Box>
       </header>
