@@ -17,6 +17,8 @@ import Input from '../components/input'
 import { LoginContext } from '../contexts/LoginContext'
 import { AuthContext } from '../contexts/AuthContext'
 
+import { LoginService } from '../services/login'
+
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
   const [activeRegister, setActiveRegister] = useState(true)
