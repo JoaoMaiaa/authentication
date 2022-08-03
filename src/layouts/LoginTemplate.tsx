@@ -17,7 +17,7 @@ import Input from '../components/input'
 import { LoginContext } from '../contexts/LoginContext'
 import { AuthContext } from '../contexts/AuthContext'
 
-import { LoginService } from '../services/login'
+import LoginService from '../services/login'
 
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
@@ -76,6 +76,8 @@ const LoginTemplate = () => {
     } else {
       setLoading(true)
       setTimeout(() => {
+        // LoginService.login('/api/login', { email: email, name: name })
+
         setLoading(false)
         setData(localStorage.getItem('token') as string)
       }, 3500)

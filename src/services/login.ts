@@ -7,7 +7,7 @@ export interface LoginProps {
 
 const LoginService = {
   login: async (params: LoginProps) => {
-    const response = await api.post('/auth/login', params)
+    return await api.post('/auth/login', params)
   }
 }
 
