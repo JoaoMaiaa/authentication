@@ -6,6 +6,9 @@ import {
   Text,
   useColorMode
 } from '@chakra-ui/react'
+import { useContext } from 'react'
+
+import { AuthContext } from '../contexts/AuthContext'
 
 import Header from '../components/header'
 import ButtonLink from '../components/button'
@@ -13,6 +16,7 @@ import Footer from '../components/footer'
 
 const HomeTemplate = () => {
   const { colorMode } = useColorMode()
+  const { data } = useContext(AuthContext)
 
   return (
     <>
@@ -51,7 +55,15 @@ const HomeTemplate = () => {
               forma global com o contexto do React e o serverles do next.
             </Text>
 
-            <ButtonLink type="button" link="/auth/login" name="Autentique-se" />
+            {data ? (
+              ''
+            ) : (
+              <ButtonLink
+                type="button"
+                link="/auth/login"
+                name="Autentique-se"
+              />
+            )}
           </Box>
           <Box
             mt={{ base: '20rem', md: '0' }}

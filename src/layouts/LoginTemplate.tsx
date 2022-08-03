@@ -32,7 +32,7 @@ const LoginTemplate = () => {
 
   useEffect(() => {
     if (data) {
-      router.push('/')
+      router.push('/auth/bem-vindo')
     } else {
       return
     }
@@ -68,7 +68,7 @@ const LoginTemplate = () => {
     })
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (email === '' || name === '') {
@@ -76,16 +76,15 @@ const LoginTemplate = () => {
     } else {
       setLoading(true)
       setTimeout(() => {
-        // LoginService.login('/api/login', { email: email, name: name })
-
         setLoading(false)
-        setData(localStorage.getItem('token') as string)
       }, 3500)
       setEmail('')
       setName('')
       alertSuccess()
       router.push('/auth/bem-vindo')
     }
+    LoginService.login({ email: email, name: name })
+    setData(localStorage.getItem('user') as string)
   }
 
   return (

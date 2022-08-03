@@ -7,7 +7,10 @@ export interface LoginProps {
 
 const LoginService = {
   login: async (params: LoginProps) => {
-    return await api.post('/auth/login', params)
+    const response = await api.post('/api/login', params)
+    localStorage.setItem('token', response.data.token)
+    localStorage.setItem('user', response.data.name)
+    localStorage.setItem('email', response.data.email)
   }
 }
 

@@ -25,7 +25,7 @@ export default async function handlerLogin(
       res.json({ message: 'Este usário não existe' })
     } else {
       const token = jwt.sign({ email }, `${secret}`, { expiresIn: '2d' })
-      res.json({ ok: true, email, token })
+      res.json({ ok: true, name, email, token })
     }
   } catch (error) {
     res.status(500).json(error)
