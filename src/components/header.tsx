@@ -1,6 +1,6 @@
 import { Box, Heading, useColorMode } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 
 import ButtonLink from './button'
 import ButtonColorMode from './buttonColorMode'
@@ -17,6 +17,10 @@ const Header = ({ buttonName, link }: HeaderProps) => {
   const router = useRouter()
   const { colorMode } = useColorMode()
   const { data } = useContext(AuthContext)
+
+  useEffect(() => {
+    return
+  }, [data])
 
   return (
     <>
@@ -45,7 +49,6 @@ const Header = ({ buttonName, link }: HeaderProps) => {
             <Box display="inline-flex" m="1.5"></Box>
             <ButtonColorMode />
             <Box display="inline-flex" m="1.5"></Box>
-
             {data ? <DrawerComponent /> : ''}
           </Box>
         </Box>

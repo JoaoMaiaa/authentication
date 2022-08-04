@@ -18,6 +18,7 @@ import { LoginContext } from '../contexts/LoginContext'
 import { AuthContext } from '../contexts/AuthContext'
 
 import LoginService from '../services/login'
+import RegisterService from '../services/register'
 
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
@@ -48,10 +49,20 @@ const LoginTemplate = () => {
     setActiveLogin(!true)
   }
 
-  const alertSuccess = () => {
+  const alertSuccessLogin = () => {
     toast({
       title: 'Successo!',
       description: 'Seja bem-vindo!',
+      status: 'success',
+      duration: 3000,
+      isClosable: true
+    })
+  }
+
+  const alertSuccessRegister = () => {
+    toast({
+      title: 'Successo!',
+      description: 'Você está inscrito, agora entre com os seus dados',
       status: 'success',
       duration: 3000,
       isClosable: true
@@ -80,11 +91,17 @@ const LoginTemplate = () => {
       }, 3500)
       setEmail('')
       setName('')
-      alertSuccess()
-      router.push('/auth/bem-vindo')
+      if (activeRegister) {
+        alertSuccessRegister()
+        RegisterService.register({ email: email, name: name })
+        handleClickLogin()
+      } else {
+        alertSuccessLogin()
+        LoginService.login({ email: email, name: name })
+        router.push('/auth/bem-vindo')
+      }
+      setData(localStorage.getItem('user') as string)
     }
-    LoginService.login({ email: email, name: name })
-    setData(localStorage.getItem('user') as string)
   }
 
   return (
