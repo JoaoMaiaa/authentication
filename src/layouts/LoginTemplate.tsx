@@ -98,7 +98,9 @@ const LoginTemplate = () => {
       } else {
         alertSuccessLogin()
         LoginService.login({ email: email, name: name })
-        router.push('/auth/bem-vindo')
+        setTimeout(() => {
+          router.push('/auth/bem-vindo')
+        }, 3500)
       }
       setData(localStorage.getItem('user') as string)
     }

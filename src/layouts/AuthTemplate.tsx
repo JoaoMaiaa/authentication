@@ -50,14 +50,14 @@ const AuthTemplate = () => {
         <main>
           <Box my="10rem">
             <Box display="flex" flexWrap="wrap" gap="4">
-              <Box mx="auto">
+              <Box mx="auto" p="1rem">
                 <Heading as="h2" fontSize="4rem">
                   JWT
                 </Heading>
                 <Text
                   my="2rem"
-                  fontWeight="normal"
-                  w={{ base: '20rem', md: '30rem' }}
+                  fontWeight="light"
+                  w={{ base: '100%', md: '30rem' }}
                 >
                   Neste projeto foi utlizado a biblioteca JWT que gera o token
                   de autenticação e assim autoriza o acesso do usuário. JSON Web
@@ -71,17 +71,19 @@ const AuthTemplate = () => {
             <Box
               my="8rem"
               display="flex"
+              justifyContent="center"
               flexWrap="wrap"
               flexDirection="row-reverse"
+              mx="auto"
             >
-              <Box mx="auto">
+              <Box mx="auto" p="1rem">
                 <Heading as="h2" fontSize="4rem">
                   Context Api
                 </Heading>
                 <Text
                   my="2rem"
-                  fontWeight="normal"
-                  w={{ base: '20rem', md: '30rem' }}
+                  fontWeight="light"
+                  w={{ base: '100%', md: '30rem' }}
                 >
                   React faz com que a criação de UIs interativas seja uma tarefa
                   fácil utilizando componentes entre outros benefícios. O
@@ -94,14 +96,14 @@ const AuthTemplate = () => {
               <Img objectFit="cover" mr="auto" w="400px" src="/react-js.png" />
             </Box>
             <Box display="flex" flexWrap="wrap">
-              <Box mx="auto">
+              <Box mx="auto" p="1rem">
                 <Heading as="h2" fontSize="4rem">
                   Next Js
                 </Heading>
                 <Text
                   my="2rem"
-                  fontWeight="normal"
-                  w={{ base: '20rem', md: '30rem' }}
+                  fontWeight="light"
+                  w={{ base: '100%', md: '30rem' }}
                 >
                   Um framework preparado para a produção. O Next.js oferece a
                   melhor experiência de desenvolvedor com todos os recursos
