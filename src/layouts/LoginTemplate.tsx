@@ -22,6 +22,7 @@ import RegisterService from '../services/register'
 
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
   const [activeRegister, setActiveRegister] = useState(true)
   const [activeLogin, setActiveLogin] = useState(false)
   const { data, setData } = useContext(AuthContext)
@@ -69,21 +70,25 @@ const LoginTemplate = () => {
     })
   }
 
-  const aletToastError = () => {
+  const alertToastError = () => {
     toast({
       title: 'Oooops!',
-      description: 'Adicione seus dados por favor',
+      description: error ? error : 'Adicione seus dados por favor',
       status: 'error',
-      duration: 9000,
+      duration: 3000,
       isClosable: true
     })
+  }
+
+  if (error) {
+    alertToastError()
   }
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (email === '' || name === '') {
-      aletToastError()
+      alertToastError()
     } else {
       setLoading(true)
       setTimeout(() => {
@@ -96,13 +101,18 @@ const LoginTemplate = () => {
         RegisterService.register({ email: email, name: name })
         handleClickLogin()
       } else {
-        alertSuccessLogin()
-        LoginService.login({ email: email, name: name })
-        setTimeout(() => {
-          router.push('/auth/bem-vindo')
-        }, 3500)
+        LoginService.login({ email: email, name: name }).then((response) => {
+          if (response.data.message) {
+            setError(response.data.message)
+          } else {
+            alertSuccessLogin()
+          }
+        })
+        // setTimeout(() => {
+        //   router.push('/auth/bem-vindo')
+        // }, 3500)
       }
-      setData(localStorage.getItem('user') as string)
+      // setData(localStorage.getItem('user') as string)
     }
   }
 

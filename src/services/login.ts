@@ -11,6 +11,7 @@ const LoginService = {
     localStorage.setItem('token', response.data.token)
     localStorage.setItem('user', response.data.name)
     localStorage.setItem('email', response.data.email)
+    return response
   }
 }
 

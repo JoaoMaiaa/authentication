@@ -14,15 +14,11 @@ export default async function handlerLogin(
   const db = await connect(`${process.env.MONGODB_URI}`)
   const collection = db.collection('personAuth')
 
-  const person = await collection.find({ email }).toArray()
-
-  const personEmail = person.map((p) => {
-    return p.email
-  })
+  const person = await collection.findOne({ email })
 
   try {
-    if (!personEmail) {
-      res.json({ message: 'Este usário não existe' })
+    if (!person) {
+      res.json({ message: 'Este usuário não existe' })
     } else {
       const token = jwt.sign({ email }, `${secret}`, { expiresIn: '2d' })
       res.json({ ok: true, name, email, token })

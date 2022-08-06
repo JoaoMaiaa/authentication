@@ -25,18 +25,24 @@ export default async function handelDelete(
   // }
 
   try {
-    const result = personResult.map((personRes) => {
-      return personRes._id
-    })
+    if (personResult) {
+      const result = personResult.map((personRes) => {
+        return personRes._id
+      })
 
-    const id = result.toString()
+      const id = result.toString()
 
-    await collection.deleteOne({ _id: new ObjectId(id) })
-    res.json({
-      ok: true,
-      message: 'usuário excluido com sucesso',
-      email: email
-    })
+      await collection.deleteOne({ _id: new ObjectId(id) })
+      res.json({
+        ok: true,
+        message: 'usuário excluido com sucesso',
+        email: email
+      })
+    } else {
+      res.json({
+        message: 'usuário não existe'
+      })
+    }
   } catch (error) {
     res.json({
       ok: false,
