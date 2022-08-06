@@ -18,7 +18,9 @@ export default async function handlerRegister(
       email,
       subscribedAt: new Date()
     })
-    res.status(200).json({ ok: true, name, email })
+    res
+      .status(200)
+      .json({ ok: true, name, email, message: 'usuário inscrito com sucesso' })
   } catch (error) {
     res.json({ error: error })
   }

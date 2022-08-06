@@ -3,6 +3,10 @@ import type { NextApiResponse, NextApiRequest } from 'next'
 
 import connect from '../../db/config'
 
+export interface EmailProps {
+  email: string
+}
+
 export default async function handelDelete(
   req: NextApiRequest,
   res: NextApiResponse
@@ -13,20 +17,28 @@ export default async function handelDelete(
   const collection = db.collection('personAuth')
 
   const personResult = await collection.find({ email }).toArray()
+
+  // if (!personResult) {
+  //   res.json({ message: 'não encontrado' })
+  // } else {
+  //   res.status(200).json({ personResult })
+  // }
+
   try {
-    const personId = personResult.map((person) => {
-      return person._id
+    const result = personResult.map((personRes) => {
+      return personRes._id
     })
-    const Id = personId.toString()
-    await collection.deleteOne({ _id: new ObjectId(Id) })
-    //   await collection.deleteOne({ email }) funciona também,
+
+    const id = result.toString()
+
+    await collection.deleteOne({ _id: new ObjectId(id) })
     res.json({
       ok: true,
       message: 'usuário excluido com sucesso',
       email: email
     })
   } catch (error) {
-    res.status(300).json({
+    res.json({
       ok: false,
       message: 'usuário não encontrado',
       email: email

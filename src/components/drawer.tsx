@@ -16,6 +16,7 @@ import React, { useRef, useContext, useEffect, useState } from 'react'
 
 import { AuthContext } from '../contexts/AuthContext'
 import LogoutService from '../services/logout'
+import DeleteService from '../services/delete'
 
 const DrawerComponent = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -34,7 +35,13 @@ const DrawerComponent = () => {
   }, [data])
 
   function handleDelete() {
+    // const email = localStorage.getItem('email')
     router.push('/')
+    setTimeout(() => {
+      const email = localStorage.getItem('email') as string
+      DeleteService.delete({ email: email })
+      setData('')
+    }, 3500)
   }
 
   function handleLogout() {
@@ -83,7 +90,7 @@ const DrawerComponent = () => {
               Sair da conta
             </Button>
             <Button
-              onClick={() => handleDelete}
+              onClick={() => handleDelete()}
               color="white"
               bg="red.500"
               _hover={{ bg: 'red.600' }}
