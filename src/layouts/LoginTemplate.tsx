@@ -22,7 +22,6 @@ import RegisterService from '../services/register'
 
 const LoginTemplate = () => {
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
   const [activeRegister, setActiveRegister] = useState(true)
   const [activeLogin, setActiveLogin] = useState(false)
   const { data, setData } = useContext(AuthContext)
@@ -73,7 +72,17 @@ const LoginTemplate = () => {
   const alertToastErrorLogin = () => {
     toast({
       title: 'Oooops!',
-      description: error,
+      description: 'Este usuário não existe',
+      status: 'error',
+      duration: 3000,
+      isClosable: true
+    })
+  }
+
+  const alertToastErrorRegister = () => {
+    toast({
+      title: 'Oooops!',
+      description: 'Este usuário já existe',
       status: 'error',
       duration: 3000,
       isClosable: true
@@ -90,41 +99,50 @@ const LoginTemplate = () => {
     })
   }
 
-  if (error) {
-    alertToastErrorLogin()
-  }
-
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
     if (email === '' || name === '') {
       alertToastError()
     } else {
-      // setLoading(true)
-      // setTimeout(() => {
-      //   setLoading(false)
-      // }, 3500)
       if (activeRegister) {
-        alertSuccessRegister()
-        RegisterService.register({ email: email, name: name })
-        handleClickLogin()
-        // setEmail('')
-        // setName('')
+        RegisterService.register({ email: email, name: name }).then(
+          (response) => {
+            if (response.data.error) {
+              alertToastErrorRegister()
+              setEmail('')
+              setName('')
+            } else {
+              setLoading(true)
+              setTimeout(() => {
+                setLoading(false)
+              }, 3500)
+              alertSuccessRegister()
+              handleClickLogin()
+              setEmail('')
+              setName('')
+            }
+          }
+        )
       } else {
         LoginService.login({ email: email, name: name }).then((response) => {
-          if (response.data.message) {
-            setError(response.data.message)
-          } else {
+          if (response.data.error) {
+            alertToastErrorLogin()
             setEmail('')
             setName('')
+          } else {
             alertSuccessLogin()
+            setLoading(true)
+            setTimeout(() => {
+              setLoading(false)
+            }, 3500)
+            router.push('/auth/bem-vindo')
+            setData(localStorage.getItem('user') as string)
+            setEmail('')
+            setName('')
           }
         })
-        setTimeout(() => {
-          router.push('/auth/bem-vindo')
-        }, 3500)
       }
-      setData(localStorage.getItem('user') as string)
     }
   }
 

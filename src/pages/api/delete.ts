@@ -40,13 +40,13 @@ export default async function handelDelete(
       })
     } else {
       res.json({
-        message: 'usuário não existe'
+        error: 'usuário não existe'
       })
     }
   } catch (error) {
     res.json({
       ok: false,
-      message: 'usuário não encontrado',
+      error: 'usuário não encontrado',
       email: email
     })
   }

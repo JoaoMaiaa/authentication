@@ -93,7 +93,7 @@ const AuthTemplate = () => {
                   componentes do projeto.
                 </Text>
               </Box>
-              <Img objectFit="cover" mr="auto" w="400px" src="/react-js.png" />
+              <Img objectFit="cover" m="auto" w="400px" src="/react-js.png" />
             </Box>
             <Box display="flex" flexWrap="wrap">
               <Box mx="auto" p="1rem">

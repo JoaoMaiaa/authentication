@@ -18,7 +18,7 @@ export default async function handlerLogin(
 
   try {
     if (!person) {
-      res.json({ message: 'Este usuário não existe' })
+      res.json({ error: 'Este usuário não existe' })
     } else {
       const token = jwt.sign({ email }, `${secret}`, { expiresIn: '2d' })
       res.json({ ok: true, name, email, token })
