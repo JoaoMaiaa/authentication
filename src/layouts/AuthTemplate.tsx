@@ -7,6 +7,8 @@ import {
   useColorMode
 } from '@chakra-ui/react'
 
+import { MotionBox, ItemAnimation, AnimationBox } from '../styles/animation'
+
 import Header from '../components/header'
 import Footer from '../components/footer'
 import ButtonLink from '../components/button'
@@ -19,14 +21,17 @@ const AuthTemplate = () => {
       <Container maxW="container.lg" p="4">
         <Header buttonName="Sair" link="/" />
         <Box display="flex" mt={{ base: '0', md: '3rem' }}>
-          <Box
+          <MotionBox
             mr="auto"
             mt={{ base: '20rem', md: '0' }}
             maxW={{ base: '100%', md: '40rem' }}
+            initial="hidden"
+            animate="visible"
+            variants={ItemAnimation}
           >
             <Img objectFit="fill" src="/jeremy-bishop-auth.jpg" />
-          </Box>
-          <Box
+          </MotionBox>
+          <MotionBox
             p="5"
             mt="4rem"
             bg={colorMode === 'light' ? '#FAF5FF' : '#151E50'}
@@ -34,6 +39,9 @@ const AuthTemplate = () => {
             ml={{ base: '0', md: '30rem' }}
             w={{ base: '350px', md: '450px' }}
             h={{ base: '380px', md: '420px' }}
+            variants={AnimationBox}
+            animate="visible"
+            initial="hidden"
           >
             <Heading display="flex" alignItems="center">
               Parabéns! Você se autenticou!
@@ -45,7 +53,7 @@ const AuthTemplate = () => {
               também de autenticação para acessar as aulas, entre outros.
             </Text>
             <ButtonLink type="button" link="/" name="Início" />
-          </Box>
+          </MotionBox>
         </Box>
         <main>
           <Box my="10rem">

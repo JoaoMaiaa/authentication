@@ -10,6 +10,8 @@ import { useContext } from 'react'
 
 import { AuthContext } from '../contexts/AuthContext'
 
+import { MotionBox, AnimationBox, ItemAnimation } from '../styles/animation'
+
 import Header from '../components/header'
 import ButtonLink from '../components/button'
 import Footer from '../components/footer'
@@ -23,7 +25,7 @@ const HomeTemplate = () => {
       <Container maxW="container.lg" p="4">
         <Header buttonName="Sobre" link="/auth/bem-vindo" />
         <Box display="flex" mt={{ base: '0', md: '3rem' }} position="relative">
-          <Box
+          <MotionBox
             p="5"
             // mt={{ base: '0', md: '4rem' }}
             mt="4rem"
@@ -32,6 +34,9 @@ const HomeTemplate = () => {
             ml={{ base: '0', md: '3rem' }}
             minW={{ base: '100px', md: '450px' }}
             h={{ base: '310px', md: '390px' }}
+            variants={AnimationBox}
+            initial="hidden"
+            animate="visible"
           >
             <Heading display="flex" flexWrap="wrap" alignItems="center">
               Bem vindo ao
@@ -43,7 +48,7 @@ const HomeTemplate = () => {
               </Box>
               <Box
                 fontSize="1.5rem"
-                mt="1"
+                mt="2"
                 color={colorMode === 'light' ? '#4358CB' : '#FAF5FF'}
               >
                 {' '}
@@ -64,7 +69,7 @@ const HomeTemplate = () => {
                 name="Autentique-se"
               />
             )}
-          </Box>
+          </MotionBox>
           <Box
             mt={{ base: '20rem', md: '0' }}
             maxW={{ base: '100%', md: '40rem' }}

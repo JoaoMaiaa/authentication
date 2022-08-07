@@ -95,8 +95,9 @@ const DrawerComponent = () => {
             <Button
               onClick={() => handleDelete()}
               color="white"
-              colorScheme="red.500"
+              bg="red.500"
               _hover={{ bg: 'red.600' }}
+              _active={{ bg: 'red.600' }}
             >
               Excluir conta
             </Button>

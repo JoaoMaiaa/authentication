@@ -10,6 +10,8 @@ import {
 import { useRouter } from 'next/router'
 import { FormEvent, useState, useContext, useEffect } from 'react'
 
+import { MotionBox, AnimationBox } from '../styles/animation'
+
 import Header from '../components/header'
 import Footer from '../components/footer'
 import Input from '../components/input'
@@ -110,6 +112,10 @@ const LoginTemplate = () => {
         RegisterService.register({ email: email, name: name }).then(
           (response) => {
             if (response.data.error) {
+              setLoading(true)
+              setTimeout(() => {
+                setLoading(false)
+              }, 3500)
               alertToastErrorRegister()
               setEmail('')
               setName('')
@@ -136,11 +142,11 @@ const LoginTemplate = () => {
             setEmail('')
             setName('')
           } else {
-            alertSuccessLogin()
             setLoading(true)
             setTimeout(() => {
               setLoading(false)
             }, 3500)
+            alertSuccessLogin()
             router.push('/auth/bem-vindo')
             setData(localStorage.getItem('user') as string)
             setEmail('')
@@ -164,7 +170,7 @@ const LoginTemplate = () => {
         <Box w={{ base: '100%', md: '50%' }}>
           <Container p="4" maxW="container.lg">
             <Header buttonName="Início" link="/" />
-            <Box
+            <MotionBox
               mx={{ base: '0', lg: '5rem' }}
               borderRadius="sm"
               mt="1.4rem"
@@ -172,6 +178,9 @@ const LoginTemplate = () => {
               w=""
               px="2rem"
               py="2rem"
+              initial="hidden"
+              animate="visible"
+              variants={AnimationBox}
             >
               <form onSubmit={(e) => handleSubmit(e)}>
                 <Heading mb="2rem" as="h1" fontSize="2rem">
@@ -249,7 +258,7 @@ const LoginTemplate = () => {
                   </Button>
                 </Box>
               </form>
-            </Box>
+            </MotionBox>
             <Box mt="5rem"></Box>
             <Footer />
           </Container>
