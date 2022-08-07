@@ -20,7 +20,7 @@ export default async function handlerLogin(
   const emailPerson = person.map((p) => p.email).toString()
 
   try {
-    if (!person) {
+    if (!person.map((p) => p.email).toString()) {
       res.json({ error: 'Este usuário não existe' })
     } else {
       const token = jwt.sign({ email }, `${secret}`, { expiresIn: '2d' })
