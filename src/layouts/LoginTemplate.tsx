@@ -49,6 +49,7 @@ const LoginTemplate = () => {
     setActiveLogin(!true)
   }
 
+  // estes toasts possuem um bug de duplicação quando usados dinamicamente
   const alertSuccessLogin = () => {
     toast({
       title: 'Successo!',
@@ -102,7 +103,7 @@ const LoginTemplate = () => {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
 
-    if (email === '' || name === '') {
+    if (email === '') {
       alertToastError()
     } else {
       if (activeRegister) {
@@ -127,6 +128,10 @@ const LoginTemplate = () => {
       } else {
         LoginService.login({ email: email, name: name }).then((response) => {
           if (response.data.error) {
+            setLoading(true)
+            setTimeout(() => {
+              setLoading(false)
+            }, 3500)
             alertToastErrorLogin()
             setEmail('')
             setName('')

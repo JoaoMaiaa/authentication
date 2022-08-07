@@ -9,19 +9,22 @@ export default async function handlerLogin(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const { email, name } = req.body
+  const { email } = req.body
 
   const db = await connect(`${process.env.MONGODB_URI}`)
   const collection = db.collection('personAuth')
 
-  const person = await collection.findOne({ email })
+  const person = await collection.find({ email }).toArray()
+
+  const namePerson = person.map((p) => p.name).toString()
+  const emailPerson = person.map((p) => p.email).toString()
 
   try {
     if (!person) {
       res.json({ error: 'Este usuário não existe' })
     } else {
       const token = jwt.sign({ email }, `${secret}`, { expiresIn: '2d' })
-      res.json({ ok: true, name, email, token })
+      res.json({ ok: true, name: namePerson, email: emailPerson, token })
     }
   } catch (error) {
     res.status(500).json(error)

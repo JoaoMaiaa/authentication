@@ -26,6 +26,9 @@ const DrawerComponent = () => {
 
   const { data, setData } = useContext(AuthContext)
 
+  const email = localStorage.getItem('email') as string
+  const user = localStorage.getItem('user') as string
+
   useEffect(() => {
     if (data) {
       setButton(true)
@@ -78,10 +81,10 @@ const DrawerComponent = () => {
           <DrawerBody>
             <Box mt="2rem">
               <Text>
-                Nome: <Box fontWeight="light">João Maia</Box>
+                Nome: <Box fontWeight="light">{user}</Box>
               </Text>
               <Text mt="1rem">
-                Email: <Box fontWeight="light">joao@email.com</Box>
+                Email: <Box fontWeight="light">{email}</Box>
               </Text>
             </Box>
           </DrawerBody>
@@ -92,7 +95,7 @@ const DrawerComponent = () => {
             <Button
               onClick={() => handleDelete()}
               color="white"
-              bg="red.500"
+              colorScheme="red.500"
               _hover={{ bg: 'red.600' }}
             >
               Excluir conta
